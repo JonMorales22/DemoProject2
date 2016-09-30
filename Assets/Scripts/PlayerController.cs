@@ -25,8 +25,6 @@ public class PlayerController : MonoBehaviour {
 		anim = GetComponent<Animator> ();
 		SetAnimationController (0);
 		speed = walkSpeed;
-		//
-
 	}
 
 	public void playFootStep()
@@ -70,10 +68,8 @@ public class PlayerController : MonoBehaviour {
 			if (Input.GetKeyUp ("space")) {
 				if (speed == runSpeed) {
 					speed = walkSpeed;
-					//isWalking = true;
 					anim.SetInteger ("AnimationState", 1);
 				} else if (speed == walkSpeed) {
-					Debug.Log("Ass");
 					movement = new Vector3 (0, 0, 0);
 					isWalking = false;
 					anim.SetInteger ("AnimationState", 0);
@@ -86,17 +82,18 @@ public class PlayerController : MonoBehaviour {
 				isDead = true;
 				playDeathSound ();
 			}
-			//Debug.Log (speed);
+
 			transform.position += movement * Time.deltaTime * speed;
+		}
+		if (Input.GetKeyUp (KeyCode.Escape)) {
+			Debug.Log ("Exit");
+			Application.Quit ();
 		}
 	}
 
 	void playDeathSound()
 	{
 		AudioSource.PlayClipAtPoint (this.deathsound,this.transform.position);
-	}
-	void OnCollisionEnter2D(){
-		//Debug.Log ("poop");
 	}
 
 	void SetAnimationController(int num)
