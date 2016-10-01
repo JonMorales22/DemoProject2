@@ -90,6 +90,12 @@ public class PlayerController : MonoBehaviour {
 			Application.Quit ();
 		}
 	}
+	public void Idle(){
+		movement = new Vector3 (0, 0, 0);
+		speed = 0;
+		isWalking = false;
+		anim.SetInteger ("AnimationState", 0);
+	}
 
 	void playDeathSound()
 	{
@@ -99,5 +105,10 @@ public class PlayerController : MonoBehaviour {
 	void SetAnimationController(int num)
 	{
 		anim.SetInteger ("AnimationState", num);
+	}
+
+	void OnCollisionStay2D(Collision2D c){
+		if (c.gameObject.tag == "Scenery")
+			Idle ();
 	}
 }
