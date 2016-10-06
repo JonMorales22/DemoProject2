@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour {
 	// Update is called once per frame
 	void LateUpdate () {
 		if (!isDead) {
-			if (Input.GetKeyUp ("right")) {
+			if (Input.GetKeyDown("right")) {
 				if (isWalking && direction == (int)facing.RIGHT) {
 					speed = runSpeed;
 					anim.SetInteger ("AnimationState", 2);
@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour {
 				movement = new Vector3 (1, 0, 0);
 
 			}
-			if (Input.GetKeyUp ("left")) {
+			if (Input.GetKeyDown ("left")) {
 				if (isWalking && direction == (int)facing.LEFT) {
 					speed = runSpeed;
 					anim.SetInteger ("AnimationState", 2);
@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour {
 				movement = new Vector3 (-1, 0, 0);
 			}
 
-			if (Input.GetKeyUp ("space")) {
+			if (Input.GetKeyDown("space")) {
 				if (speed == runSpeed) {
 					speed = walkSpeed;
 					anim.SetInteger ("AnimationState", 1);
@@ -75,7 +75,7 @@ public class PlayerController : MonoBehaviour {
 					anim.SetInteger ("AnimationState", 0);
 				}
 			}
-			if (Input.GetKeyUp (KeyCode.Backspace)) {
+			if (Input.GetKeyDown (KeyCode.Backspace)) {
 				movement = new Vector3 (0, 0, 0);
 				isWalking = false;
 				anim.SetBool ("isDead", true);
@@ -85,7 +85,7 @@ public class PlayerController : MonoBehaviour {
 
 			transform.position += movement * Time.deltaTime * speed;
 		}
-		if (Input.GetKeyUp (KeyCode.Escape)) {
+		if (Input.GetKeyDown (KeyCode.Escape)) {
 			Debug.Log ("Exit");
 			Application.Quit ();
 		}
